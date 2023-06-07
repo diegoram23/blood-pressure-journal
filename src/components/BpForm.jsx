@@ -2,13 +2,35 @@ import { useState } from "react";
 
 const BpForm = () => {
 
+  let data = [
+    {
+      reading: '140/60',
+      time: 'afternoon',
+      when: '2023-05-23'
+    }
+  ]
+
+
+  class Reading {
+    constructor(reading,time,when) {
+      this.reading = reading
+      this.time = time
+      this.when = when
+    }
+  }
+
+  const addReading = () => {
+    data.push(new Reading(reading, time, when))
+    console.log(data)
+  }
+
   const [reading, setReading] = useState('')
   const [time, setTime] = useState('')
   const [when, setWhen] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(reading, time, when)
+    addReading()
   }
 
   return (
