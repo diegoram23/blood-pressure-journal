@@ -3,40 +3,53 @@ import RecentReadings from "./RecentReadings";
 
 const BpForm = () => {
 
-  let dataReadings = [
+  // Empty states to be filled by form data
+  const [reading, setReading] = useState('')
+  const [time, setTime] = useState('')
+  const [when, setWhen] = useState('')
+
+  // Hard coded sample data
+  const [dataReadings, setDataReadings] = useState([
+    {
+      reading: '140/60',
+      time: 'afternoon',
+      when: '2023-05-23'
+    },
     {
       reading: '140/60',
       time: 'afternoon',
       when: '2023-05-23'
     }
-  ]
+  ])
 
-
-  class Reading {
-    constructor(reading, time, when) {
-      this.reading = reading
-      this.time = time
-      this.when = when
+  // Adds new readings to data
+  const addReading = (reading, when, time) => {
+    // New reading object
+    let newReading = {
+      reading: reading,
+      when: when,
+      time: time
     }
+    // Sets new readings to new obj created above plus previous data
+    setDataReadings([...dataReadings, newReading])
+    console.log('update', dataReadings)
   }
 
-  const addReading = () => {
-    dataReadings.push(new Reading(reading, time, when))
-  }
-
-  const [reading, setReading] = useState('')
-  const [time, setTime] = useState('')
-  const [when, setWhen] = useState('')
-
+  // Handles form data and calls add new reading function
   const handleSubmit = (e) => {
     e.preventDefault()
-    addReading()
+    addReading(reading, when, time)
   }
 
   return (
     <div>
+
+      {/* Form HTML */}
       <form onSubmit={handleSubmit}>
+
         <h2>Enter your Readings</h2>
+
+        {/* Blood pressure HTML */}
         <label htmlFor="reading">Blood Pressure</label>
         <input
           required
@@ -47,6 +60,7 @@ const BpForm = () => {
           onChange={(e) => setReading(e.target.value)}
         />
 
+        {/* Time of Day HTML */}
         <label>Time of Day</label>
         <select name="time" id="time" value={time} onChange={(e) => setTime(e.target.value)}>
           <option value=''>-- Select --</option>
@@ -55,6 +69,7 @@ const BpForm = () => {
           <option value='evening'>Evening</option>
         </select>
 
+        {/* Date HTML */}
         <label htmlFor="when">Date</label>
         <input
           required
@@ -64,9 +79,14 @@ const BpForm = () => {
           value={when}
           onChange={(e) => setWhen(e.target.value)}
         />
+
+        {/* Submit Button */}
         <button>Submit</button>
       </form>
-      <RecentReadings dataReadings={dataReadings}/>
+
+      {/* Recent Readings Component */}
+      <RecentReadings dataReadings={dataReadings} />
+
     </div>
   );
 }
