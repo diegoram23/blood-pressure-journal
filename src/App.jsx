@@ -4,7 +4,13 @@ function App() {
 
   return (
     <div>
-      <h1>My Blood Pressure Journal</h1>
+      <header>
+        <h1>My BP Journal</h1>
+        <nav>
+          <li>Home</li>
+          <li>Journal</li>
+        </nav>
+      </header>
 
       <BpForm />
     </div>

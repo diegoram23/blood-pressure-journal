@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RecentReadings from "./RecentReadings";
+import SortReadings from "./SortReadings";
 
 const BpForm = () => {
 
@@ -49,43 +50,47 @@ const BpForm = () => {
 
         <h2>Enter your Readings</h2>
 
-        {/* Blood pressure HTML */}
-        <label htmlFor="reading">Blood Pressure</label>
-        <input
-          required
-          type="text"
-          id="reading"
-          name="reading"
-          value={reading}
-          onChange={(e) => setReading(e.target.value)}
-        />
+        <div className="readings-container">
 
-        {/* Time of Day HTML */}
-        <label>Time of Day</label>
-        <select name="time" id="time" value={time} onChange={(e) => setTime(e.target.value)}>
-          <option value=''>-- Select --</option>
-          <option value='morning'>Morning</option>
-          <option value='afternoon'>Afternoon</option>
-          <option value='evening'>Evening</option>
-        </select>
+          {/* Blood pressure HTML */}
+          <label htmlFor="reading">Blood Pressure</label>
+          <input
+            required
+            type="text"
+            id="reading"
+            name="reading"
+            value={reading}
+            onChange={(e) => setReading(e.target.value)}
+          />
 
-        {/* Date HTML */}
-        <label htmlFor="when">Date</label>
-        <input
-          required
-          type="date"
-          id="when"
-          name="when"
-          value={when}
-          onChange={(e) => setWhen(e.target.value)}
-        />
+          {/* Time of Day HTML */}
+          <label>Time of Day</label>
+          <select name="time" id="time" value={time} onChange={(e) => setTime(e.target.value)}>
+            <option value=''>-- Select --</option>
+            <option value='morning'>Morning</option>
+            <option value='afternoon'>Afternoon</option>
+            <option value='evening'>Evening</option>
+          </select>
 
-        {/* Submit Button */}
-        <button>Submit</button>
+          {/* Date HTML */}
+          <label htmlFor="when">Date</label>
+          <input
+            required
+            type="date"
+            id="when"
+            name="when"
+            value={when}
+            onChange={(e) => setWhen(e.target.value)}
+          />
+
+          {/* Submit Button */}
+          <button>Submit</button>
+        </div>
       </form>
 
       {/* Recent Readings Component */}
       <RecentReadings dataReadings={dataReadings} />
+      <SortReadings dataReadings={dataReadings} />
 
     </div>
   );

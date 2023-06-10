@@ -1,26 +1,61 @@
-form {
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+.readings-container {
   border: 1px solid red;
-  padding: 1em;
+  padding: 0.5em;
 }
 
-h1{
-  font-size: 30px;
+h1 {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
 }
 
-label{
+label {
   display: block;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  background-color: #ffffff;
+  margin-bottom: 2em;
+  padding: 1em;
+}
 
-h2{
+nav {
+  display: flex;
+  color: #2d2d2d;
+  font-size: 14px;
+  gap: 1em;
+}
+
+li {
+  list-style-type: none;
+  font-size: 16px;
+}
+
+h2 {
   margin: 0;
   text-align: center;
+  background-color: aliceblue;
 }
 
 button {
   display: block;
 }
 
+
 th {
   border: 1px solid blue;
+}
+
+select {
+  border-color: red;
+  border-radius: 5px;
 }
