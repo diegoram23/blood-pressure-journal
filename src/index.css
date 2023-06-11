@@ -3,19 +3,33 @@ body {
   margin: 0;
 }
 
+form {
+  margin-bottom: 2em;
+}
+
+.container {
+  margin-bottom: 2em;
+}
+
 .readings-container {
-  border: 1px solid red;
-  padding: 0.5em;
+  border: 1px solid #2d2d2d;
+  padding: 0.7em;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 500;
   margin: 0;
+  color: #ed1b2e;
 }
 
 label {
   display: block;
+}
+
+.logo {
+  width: 30px;
+  margin-right: auto;
 }
 
 header {
@@ -24,7 +38,7 @@ header {
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
   background-color: #ffffff;
-  margin-bottom: 2em;
+  margin: 0 0 2em 0;
   padding: 1em;
 }
 
@@ -35,15 +49,19 @@ nav {
   gap: 1em;
 }
 
-li {
-  list-style-type: none;
+a {
+  text-decoration: none;
   font-size: 16px;
+  color: #2d2d2d;
 }
 
 h2 {
   margin: 0;
+  padding: 0.3em;
   text-align: center;
-  background-color: aliceblue;
+  background-color: #ed1b2e;
+  color: #fff;
+  border-radius: 5px;
 }
 
 button {

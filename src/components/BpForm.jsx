@@ -43,7 +43,7 @@ const BpForm = () => {
   }
 
   return (
-    <div>
+    <div className="container">
 
       {/* Form HTML */}
       <form onSubmit={handleSubmit}>

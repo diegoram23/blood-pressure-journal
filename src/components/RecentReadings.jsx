@@ -2,7 +2,7 @@
 const RecentReadings = ({ dataReadings }) => {
 
     return (
-        <div>
+        <div className="container">
             <h2>Recent Readings</h2>
             <div className="readings-container">
 
