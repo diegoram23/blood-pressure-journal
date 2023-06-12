@@ -22,7 +22,7 @@ const RecentReadings = () => {
 
                         {/* Maps over data and renders it in table html form */}
                         {dataReadings.map((data, index) => {
-                            return <tr key={index}>
+                            return <tr key={index} className="testt">
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>

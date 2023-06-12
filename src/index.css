@@ -8,19 +8,22 @@ form {
 }
 
 .container {
-  margin-bottom: 2em;
+  margin: 0.7em;
+  background-color: #f1ced4;
+  border-radius: 10px;
+
 }
 
 .readings-container {
-  border: 1px solid #2d2d2d;
   padding: 0.7em;
+  border-radius: 10px;
 }
 
 h1 {
   font-size: 26px;
   font-weight: 500;
   margin: 0;
-  color: #ed1b2e;
+  color: #aa1945;
 }
 
 label {
@@ -59,18 +62,28 @@ h2 {
   margin: 0;
   padding: 0.3em;
   text-align: center;
-  background-color: #ed1b2e;
+  background-color: #aa1945;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 button {
   display: block;
 }
 
+tr {
+  display: flex;
+  justify-content: space-between
+}
 
 th {
-  border: 1px solid blue;
+  background-color: #391306;
+  color: #fff;
+  padding: 0.5em;
+}
+
+td {
+ background-color: #fff;
 }
 
 select {
