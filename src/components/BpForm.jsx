@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RecentReadings from "./RecentReadings";
 import SortReadings from "./SortReadings";
+import useFetch from "./useFetch";
 
 const BpForm = () => {
 
@@ -9,19 +10,9 @@ const BpForm = () => {
   const [time, setTime] = useState('')
   const [when, setWhen] = useState('')
 
-  // Hard coded sample data
-  const [dataReadings, setDataReadings] = useState([
-    {
-      reading: '140/60',
-      time: 'afternoon',
-      when: '2023-05-23'
-    },
-    {
-      reading: '140/60',
-      time: 'afternoon',
-      when: '2023-05-23'
-    }
-  ])
+  // useFetch retrieves hard coded data
+  const { dataReadings } = useFetch()
+
 
   // Adds new readings to data
   const addReading = (reading, when, time) => {
@@ -87,10 +78,6 @@ const BpForm = () => {
           <button>Submit</button>
         </div>
       </form>
-
-      {/* Recent Readings Component */}
-      <RecentReadings dataReadings={dataReadings} />
-      <SortReadings dataReadings={dataReadings} />
 
     </div>
   );

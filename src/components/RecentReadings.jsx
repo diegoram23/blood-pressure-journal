@@ -1,5 +1,10 @@
+import useFetch from "./useFetch";
 
-const RecentReadings = ({ dataReadings }) => {
+
+const RecentReadings = () => {
+
+    const { dataReadings } = useFetch()
+
 
     return (
         <div className="container">
