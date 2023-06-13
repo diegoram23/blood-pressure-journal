@@ -1,18 +1,41 @@
+import { useState } from "react";
 import useFetch from "../components/useFetch";
 const Journal = () => {
     const { dataReadings } = useFetch()
-    console.log('journal', dataReadings)
+
+    const [sort, setSort] = useState('Sort By')
+
+    const handleSort = (sortValue) => {
+        setSort(sortValue)
+        if (sortValue === 'morning') {
+            console.log('mornings');
+        }
+        else if (sortValue === 'afternoon') {
+            console.log('afternoons');
+        }
+        else if (sortValue === 'evenings') {
+            console.log('evenings')
+        }
+        else if (sortValue === 'newest') {
+            console.log('newest');
+        }
+        else {
+            console.log('oldest');
+        }
+
+    }
 
     return (
         <div className="container">
             <h2>Sorted Readings</h2>
             <div className="readings-container">
-                <select name="sort" id="sort">
-                    <option value=''>Sort By</option>
+                <select name="sort" id="sort" value={sort} onChange={(e) => handleSort(e.target.value)}>
+                    <option value=''>{sort}</option>
                     <option value='morning'>Time Morning</option>
-                    <option value='morning'>Time Afternoon</option>
-                    <option value='morning'>Time Evening</option>
-
+                    <option value='afternoon'>Time Afternoon</option>
+                    <option value='evening'>Time Evening</option>
+                    <option value='newest'>Newest</option>
+                    <option value='oldest'>Oldest</option>
                 </select>
                 <table>
 

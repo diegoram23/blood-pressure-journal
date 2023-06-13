@@ -1,6 +1,4 @@
 import { useState } from "react";
-import RecentReadings from "./RecentReadings";
-import SortReadings from "./SortReadings";
 import useFetch from "./useFetch";
 
 const BpForm = () => {
@@ -12,7 +10,7 @@ const BpForm = () => {
 
   // useFetch retrieves hard coded data
   const { dataReadings } = useFetch()
-
+  
 
   // Adds new readings to data
   const addReading = (reading, when, time) => {

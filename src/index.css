@@ -71,9 +71,9 @@ button {
   display: block;
 }
 
-tr {
+tr .testt {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 th {
@@ -84,6 +84,9 @@ th {
 
 td {
  background-color: #fff;
+ width: 30%;
+ padding: 0.7em;
+
 }
 
 select {

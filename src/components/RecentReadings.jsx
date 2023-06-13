@@ -26,7 +26,6 @@ const RecentReadings = () => {
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
-
                             </tr>
                         })}
 
