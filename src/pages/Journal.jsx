@@ -53,7 +53,7 @@ const Journal = () => {
                             return <tr key={index}>
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
-                                <td>{data.date.seconds}</td>
+                                <td>{data.when}</td>
                             </tr>
                         })}
                     </tbody>

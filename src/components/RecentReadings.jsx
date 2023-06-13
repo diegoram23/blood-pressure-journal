@@ -24,7 +24,7 @@ const RecentReadings = () => {
                             return <tr key={index} className="testt">
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
-                                <td>{data.date.seconds}</td>
+                                <td>{data.when}</td>
                             </tr>
                         })}
 

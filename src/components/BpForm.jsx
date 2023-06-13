@@ -1,6 +1,9 @@
 import { useState } from "react";
 import useFetch from "./useFetch";
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
+
 const BpForm = () => {
 
   // Empty states to be filled by form data
@@ -8,27 +11,18 @@ const BpForm = () => {
   const [time, setTime] = useState('')
   const [when, setWhen] = useState('')
 
-  // useFetch retrieves hard coded data
-  const { dataReadings } = useFetch()
   
-
-  // Adds new readings to data
-  const addReading = (reading, when, time) => {
-    // New reading object
-    let newReading = {
-      reading: reading,
-      when: when,
-      time: time
-    }
-    // Sets new readings to new obj created above plus previous data
-    setDataReadings([...dataReadings, newReading])
-    console.log('update', dataReadings)
-  }
-
   // Handles form data and calls add new reading function
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    addReading(reading, when, time)
+
+    const ref = collection(db, 'blood-pressure-readings')
+
+    await addDoc(ref, {
+      reading: reading,
+      time: time,
+      when: when,
+    })
   }
 
   return (
@@ -56,9 +50,9 @@ const BpForm = () => {
           <label>Time of Day</label>
           <select name="time" id="time" value={time} onChange={(e) => setTime(e.target.value)}>
             <option value=''>-- Select --</option>
-            <option value='morning'>Morning</option>
-            <option value='afternoon'>Afternoon</option>
-            <option value='evening'>Evening</option>
+            <option value='Morning'>Morning</option>
+            <option value='Afternoon'>Afternoon</option>
+            <option value='Evening'>Evening</option>
           </select>
 
           {/* Date HTML */}
