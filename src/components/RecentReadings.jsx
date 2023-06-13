@@ -1,10 +1,9 @@
-import useFetch from "./useFetch";
-
+import useCollection from "../hooks/useCollection";
 
 const RecentReadings = () => {
 
-    const { dataReadings } = useFetch()
-
+    const {documents: bloodpreadings} = useCollection('blood-pressure-readings')
+    console.log('recent', bloodpreadings)
 
     return (
         <div className="container">
@@ -21,11 +20,11 @@ const RecentReadings = () => {
                         </tr>
 
                         {/* Maps over data and renders it in table html form */}
-                        {dataReadings.map((data, index) => {
+                        {bloodpreadings.map((data, index) => {
                             return <tr key={index} className="testt">
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
-                                <td>{data.when}</td>
+                                <td>{data.date.seconds}</td>
                             </tr>
                         })}
 

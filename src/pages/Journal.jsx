@@ -1,7 +1,9 @@
 import { useState } from "react";
-import useFetch from "../components/useFetch";
+import useCollection from "../hooks/useCollection";
 const Journal = () => {
-    const { dataReadings } = useFetch()
+
+    const {documents: bloodpreadings} = useCollection('blood-pressure-readings')
+    console.log('journal', bloodpreadings)
 
     const [sort, setSort] = useState('Sort By')
 
@@ -47,11 +49,11 @@ const Journal = () => {
                         </tr>
 
                         {/* Maps over data and renders it in table html form */}
-                        {dataReadings.map((data, index) => {
+                        {bloodpreadings.map((data, index) => {
                             return <tr key={index}>
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
-                                <td>{data.when}</td>
+                                <td>{data.date.seconds}</td>
                             </tr>
                         })}
                     </tbody>
