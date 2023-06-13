@@ -5,12 +5,12 @@ const useFetch = () => {
     const [dataReadings, setDataReadings] = useState([
         {
           reading: '140/60',
-          time: 'afternoon',
+          time: 'Afternoon',
           when: '2023-05-23'
         },
         {
           reading: '140/60',
-          time: 'afternoon',
+          time: 'Afternoon',
           when: '2023-05-23'
         }
       ])
