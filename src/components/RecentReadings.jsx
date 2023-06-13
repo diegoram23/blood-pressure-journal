@@ -1,9 +1,15 @@
 import useCollection from "../hooks/useCollection";
+import { updateDoc } from "firebase/firestore";
+
 
 const RecentReadings = () => {
 
-    const {documents: bloodpreadings} = useCollection('blood-pressure-readings')
-    console.log('recent', bloodpreadings)
+    const {documents: bpReadings} = useCollection('blood-pressure-readings')
+    const recentThree = bpReadings.slice(0,3)
+
+    const handleEdit = (id) => {
+        console.log('yes', id)
+    }
 
     return (
         <div className="container">
@@ -20,11 +26,12 @@ const RecentReadings = () => {
                         </tr>
 
                         {/* Maps over data and renders it in table html form */}
-                        {bloodpreadings.map((data, index) => {
+                        {recentThree.map((data, index) => {
                             return <tr key={index} className="testt">
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
+                                <td><button className="edit-btn" onClick={() => handleEdit(data.id)}>Edit</button></td>
                             </tr>
                         })}
 

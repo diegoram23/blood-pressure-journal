@@ -1,9 +1,11 @@
 import { useState } from "react";
 import useCollection from "../hooks/useCollection";
+
+
 const Journal = () => {
 
-    const {documents: bloodpreadings} = useCollection('blood-pressure-readings')
-    console.log('journal', bloodpreadings)
+    const { documents: bpReadings } = useCollection('blood-pressure-readings')
+    console.log('journal', bpReadings)
 
     const [sort, setSort] = useState('Sort By')
 
@@ -49,16 +51,20 @@ const Journal = () => {
                         </tr>
 
                         {/* Maps over data and renders it in table html form */}
-                        {bloodpreadings.map((data, index) => {
+                        {bpReadings.map((data, index) => {
                             return <tr key={index}>
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
+                                <td><button className="edit-btn">Edit</button></td>
+
                             </tr>
                         })}
+
                     </tbody>
 
                 </table>
+
             </div>
         </div>
     );

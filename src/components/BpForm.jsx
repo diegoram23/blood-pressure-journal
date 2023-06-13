@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useFetch from "./useFetch";
 
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
