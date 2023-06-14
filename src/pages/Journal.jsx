@@ -2,11 +2,13 @@ import { useState } from "react";
 import useCollection from "../hooks/useCollection";
 
 import { db } from "../firebase/config";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, query, where } from "firebase/firestore";
 
 const Journal = () => {
 
     const { documents: bpReadings } = useCollection('blood-pressure-readings')
+
+    const [dataFiltered, setDataFiltered] = useState(bpReadings)
     console.log('journal', bpReadings)
 
     const handleDelete = async (id) => {
@@ -18,22 +20,47 @@ const Journal = () => {
     const [sort, setSort] = useState('Sort By')
 
     const handleSort = (sortValue) => {
+
+        //All readings
         setSort(sortValue)
-        if (sortValue === 'morning') {
-            console.log('mornings');
+        if (sortValue === '') {
+            console.log('all');
         }
+
+        //Filters only readings in the moning
+        else if (sortValue === 'morning') {
+            const filtered = bpReadings.filter(bp => {
+                return bp.time == 'Morning'
+            })
+            setDataFiltered(filtered)
+        }
+
+        //Filters only readings in the moning
         else if (sortValue === 'afternoon') {
-            console.log('afternoons');
+            const filtered = bpReadings.filter(bp => {
+                return bp.time == 'Afternoon'
+            })
+            setDataFiltered(filtered)
         }
-        else if (sortValue === 'evenings') {
-            console.log('evenings')
+
+        //Filters only readings in the moning
+        else if (sortValue === 'evening') {
+            const filtered = bpReadings.filter(bp => {
+                return bp.time == 'Evening'
+            })
+            setDataFiltered(filtered)
         }
+
+        //Sorts by newest readings
         else if (sortValue === 'newest') {
             console.log('newest');
         }
+
+        //Sorts by oldest readings
         else {
             console.log('oldest');
         }
+
 
     }
 
@@ -43,9 +70,9 @@ const Journal = () => {
             <div className="readings-container">
                 <select name="sort" id="sort" value={sort} onChange={(e) => handleSort(e.target.value)}>
                     <option value=''>{sort}</option>
-                    <option value='morning'>Time Morning</option>
-                    <option value='afternoon'>Time Afternoon</option>
-                    <option value='evening'>Time Evening</option>
+                    <option value='morning'>Morning</option>
+                    <option value='afternoon'>Afternoon</option>
+                    <option value='evening'>Evening</option>
                     <option value='newest'>Newest</option>
                     <option value='oldest'>Oldest</option>
                 </select>
@@ -59,7 +86,7 @@ const Journal = () => {
                         </tr>
 
                         {/* Maps over data and renders it in table html form */}
-                        {bpReadings.map((data, index) => {
+                        {dataFiltered.map((data, index) => {
                             return <tr key={index}>
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>

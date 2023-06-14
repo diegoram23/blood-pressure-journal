@@ -3,11 +3,11 @@ import { db } from "../firebase/config";
 
 import { collection, onSnapshot } from 'firebase/firestore'
 
-const useCollection = (c) => {
+const useCollection = (col) => {
     const [documents, setDocuments] = useState([])
 
     useEffect(() => {
-        let ref = collection(db, c)
+        let ref = collection(db, col)
 
         const unsub = onSnapshot(ref, (snapshot) => {
             let results = []
@@ -17,7 +17,7 @@ const useCollection = (c) => {
             setDocuments(results)
         })
         return () => unsub()
-    }, [c])
+    }, [col])
     return { documents }
 }
 
