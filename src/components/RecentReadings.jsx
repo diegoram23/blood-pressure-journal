@@ -1,5 +1,6 @@
 import useCollection from "../hooks/useCollection";
-import { updateDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
+import { doc, deleteDoc } from "firebase/firestore";
 
 
 const RecentReadings = () => {
@@ -7,7 +8,9 @@ const RecentReadings = () => {
     const {documents: bpReadings} = useCollection('blood-pressure-readings')
     const recentThree = bpReadings.slice(0,3)
 
-    const handleEdit = (id) => {
+    const handleDelete = async (id) => {
+        const docRef = doc(db, 'blood-pressure-readings', id)
+        await deleteDoc(docRef)
         console.log('yes', id)
     }
 
@@ -31,7 +34,7 @@ const RecentReadings = () => {
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
-                                <td><button className="edit-btn" onClick={() => handleEdit(data.id)}>Edit</button></td>
+                                <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Edit</button></td>
                             </tr>
                         })}
 
