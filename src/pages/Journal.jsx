@@ -1,11 +1,19 @@
 import { useState } from "react";
 import useCollection from "../hooks/useCollection";
 
+import { db } from "../firebase/config";
+import { doc, deleteDoc } from "firebase/firestore";
 
 const Journal = () => {
 
     const { documents: bpReadings } = useCollection('blood-pressure-readings')
     console.log('journal', bpReadings)
+
+    const handleDelete = async (id) => {
+        const docRef = doc(db, 'blood-pressure-readings', id)
+        await deleteDoc(docRef)
+    }
+
 
     const [sort, setSort] = useState('Sort By')
 
@@ -30,7 +38,7 @@ const Journal = () => {
     }
 
     return (
-        <div className="container">
+        <div className="table-container">
             <h2>Sorted Readings</h2>
             <div className="readings-container">
                 <select name="sort" id="sort" value={sort} onChange={(e) => handleSort(e.target.value)}>
@@ -56,7 +64,7 @@ const Journal = () => {
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
-                                <td><button className="edit-btn">Edit</button></td>
+                                <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Delete</button></td>
 
                             </tr>
                         })}

@@ -11,11 +11,10 @@ const RecentReadings = () => {
     const handleDelete = async (id) => {
         const docRef = doc(db, 'blood-pressure-readings', id)
         await deleteDoc(docRef)
-        console.log('yes', id)
     }
 
     return (
-        <div className="container">
+        <div className="table-container">
             <h2>Recent Readings</h2>
             <div className="readings-container">
 
@@ -34,7 +33,7 @@ const RecentReadings = () => {
                                 <td>{data.reading}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
-                                <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Edit</button></td>
+                                <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Delete</button></td>
                             </tr>
                         })}
 

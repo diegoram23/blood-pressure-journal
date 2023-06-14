@@ -3,6 +3,8 @@ body {
   margin: 0;
 }
 
+/*------------------------------ Hero Styles --------------------------- */
+
 .hero {
   color: #391306;
   background-color: #fff;
@@ -16,18 +18,47 @@ body {
   background-size: cover;
 }
 
-.info-container {
-  background-color: #b0e731;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/*------------------------ Label and Input Styles ---------------------------*/
 
 input {
   border-radius: 6px;
   padding: 0.3em;
   border: none;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  margin-top: 0.2em;
+}
+
+select {
+  border: none;
+  border-radius: 6px;
+}
+
+form {
+  margin-bottom: 2em;
+}
+
+
+
+/*------------------------- Typograpy Styles -------------------------------- */
+
+h1 {
+  font-size: 26px;
+  font-weight: 500;
+  margin: 0;
+  color: #aa1945;
+}
+
+h2 {
+  margin: 0;
+  padding: 0.3em;
+  text-align: center;
+  background-color: #aa1945;
+  color: #fff;
+  border-radius: 5px;
 }
 
 p {
@@ -43,38 +74,8 @@ p {
   align-items: center;
 }
 
-form {
-  margin-bottom: 2em;
-}
+/*------------------------- Header and Nav Styles ---------------------------------*/
 
-.container {
-  background-color: #f1ced4;
-  border-radius: 5px;
-
-}
-
-.readings-container {
-  padding: 0.4em;
-  border-radius: 5px;
-}
-
-h1 {
-  font-size: 26px;
-  font-weight: 500;
-  margin: 0;
-  color: #aa1945;
-}
-
-label {
-  display: block;
-  font-size: 18px;
-  margin-top: 0.2em;
-}
-
-.logo {
-  width: 30px;
-  margin-right: auto;
-}
 
 header {
   display: flex;
@@ -84,6 +85,11 @@ header {
   background-color: #ffffff;
   margin: 0;
   padding: 1em;
+}
+
+.logo {
+  width: 30px;
+  margin-right: auto;
 }
 
 nav {
@@ -99,12 +105,26 @@ a {
   color: #2d2d2d;
 }
 
-h2 {
-  margin: 0;
-  padding: 0.3em;
-  text-align: center;
-  background-color: #aa1945;
-  color: #fff;
+nav a.hover {
+  cursor: pointer;
+}
+
+nav a.active {
+  border-bottom: 2px solid #aa1945;
+  font-weight: bold;
+}
+
+
+/* ------------------------------ Table Styles -------------------------------- */
+
+.table-container {
+  background-color: #f1ced4;
+  border-radius: 5px;
+
+}
+
+.readings-container {
+  padding: 0.4em;
   border-radius: 5px;
 }
 
@@ -129,10 +149,7 @@ td {
   font-weight: bold;
 }
 
-select {
-  border: none;
-  border-radius: 6px;
-}
+/*---------------------------- Button Styles ---------------------------- */
 
 button {
   display: block;
