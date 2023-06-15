@@ -6,11 +6,13 @@ import { db } from "../firebase/config";
 const BpForm = () => {
 
   // Empty states to be filled by form data
-  const [reading, setReading] = useState('')
+  const [readingSys, setReadingSys] = useState('')
+  const [readingDia, setReadingDia] = useState('')
+
   const [time, setTime] = useState('')
   const [when, setWhen] = useState('')
 
-  
+
   // Handles form data and calls add new reading function
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,7 +20,8 @@ const BpForm = () => {
     const ref = collection(db, 'blood-pressure-readings')
 
     await addDoc(ref, {
-      reading: reading,
+      readingSys: readingSys,
+      readingDia: readingDia,
       time: time,
       when: when,
     })
@@ -33,17 +36,31 @@ const BpForm = () => {
         <h2>Enter your Readings</h2>
 
         <div className="readings-container">
-
           {/* Blood pressure HTML */}
-          <label htmlFor="reading">Blood Pressure</label>
-          <input
-            required
-            type="text"
-            id="reading"
-            name="reading"
-            value={reading}
-            onChange={(e) => setReading(e.target.value)}
-          />
+          <label htmlFor="readingSys">Blood Pressure</label>
+          <div className="bp-container">
+
+            <input
+              required
+              type="number"
+              id="readingSys"
+              name="readingSys"
+              value={readingSys}
+              onChange={(e) => setReadingSys(e.target.value)}
+            />
+            <span>/</span>
+            <label htmlFor="readingSys"></label>
+            <input
+              required
+              type="number"
+              id="readingDia"
+              name="readingDia"
+              value={readingDia}
+              onChange={(e) => setReadingDia(e.target.value)}
+            />
+          </div>
+
+
 
           {/* Time of Day HTML */}
           <label>Time of Day</label>

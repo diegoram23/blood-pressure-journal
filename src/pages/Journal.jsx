@@ -90,7 +90,7 @@ const Journal = () => {
                         {/* Maps over data and renders it in table html form */}
                         {dataFiltered.map((data, index) => {
                             return <tr key={index}>
-                                <td>{data.reading}</td>
+                                <td>{data.readingDia}/{data.readingSys}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
                                 <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Delete</button></td>

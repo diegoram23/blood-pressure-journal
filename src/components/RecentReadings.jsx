@@ -5,8 +5,9 @@ import { doc, deleteDoc } from "firebase/firestore";
 
 const RecentReadings = () => {
 
-    const {documents: bpReadings} = useCollection('blood-pressure-readings')
-    const recentThree = bpReadings.slice(0,3)
+    const { documents: bpReadings } = useCollection('blood-pressure-readings')
+    const recentThree = bpReadings.slice(0, 3)
+    console.log(recentThree);
 
     const handleDelete = async (id) => {
         const docRef = doc(db, 'blood-pressure-readings', id)
@@ -30,7 +31,7 @@ const RecentReadings = () => {
                         {/* Maps over data and renders it in table html form */}
                         {recentThree.map((data, index) => {
                             return <tr key={index} className="testt">
-                                <td>{data.reading}</td>
+                                <td>{data.readingDia}/{data.readingSys}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
                                 <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Delete</button></td>
