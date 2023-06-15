@@ -9,22 +9,25 @@ const Journal = () => {
     const { documents: bpReadings } = useCollection('blood-pressure-readings')
 
     const [dataFiltered, setDataFiltered] = useState(bpReadings)
-    console.log('journal', bpReadings)
 
+    const [emptyMessage, setEmptyMessage] = useState(true)
+
+    //Deletes documents
     const handleDelete = async (id) => {
         const docRef = doc(db, 'blood-pressure-readings', id)
         await deleteDoc(docRef)
     }
 
 
-    const [sort, setSort] = useState('Sort By')
+    const [sortState, setSortState] = useState('')
 
     const handleSort = (sortValue) => {
+        setEmptyMessage(false)
+        setSortState(sortValue)
 
         //All readings
-        setSort(sortValue)
-        if (sortValue === '') {
-            console.log('all');
+        if (sortValue === 'all') {
+            setDataFiltered(bpReadings)
         }
 
         //Filters only readings in the moning
@@ -68,8 +71,9 @@ const Journal = () => {
         <div className="table-container">
             <h2>Sorted Readings</h2>
             <div className="readings-container">
-                <select name="sort" id="sort" value={sort} onChange={(e) => handleSort(e.target.value)}>
-                    <option value=''>{sort}</option>
+                <select name="sort" id="sort" value={sortState} onChange={(e) => handleSort(e.target.value)}>
+                    <option value=''>--Filter By--</option>
+                    <option value='all'>All</option>
                     <option value='morning'>Morning</option>
                     <option value='afternoon'>Afternoon</option>
                     <option value='evening'>Evening</option>
@@ -77,14 +81,12 @@ const Journal = () => {
                     <option value='oldest'>Oldest</option>
                 </select>
                 <table>
-
                     <tbody>
-                        <tr>
+                        {!emptyMessage &&<tr>
                             <th>Reading</th>
                             <th>Time</th>
                             <th>Date</th>
-                        </tr>
-
+                        </tr>}
                         {/* Maps over data and renders it in table html form */}
                         {dataFiltered.map((data, index) => {
                             return <tr key={index}>
@@ -95,12 +97,11 @@ const Journal = () => {
 
                             </tr>
                         })}
-
                     </tbody>
-
                 </table>
-
             </div>
+
+            {emptyMessage && <h3 className="empty-journal">Choose a Category Above to Filter By</h3>}
         </div>
     );
 }
