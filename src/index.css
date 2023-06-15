@@ -128,6 +128,7 @@ nav a.active {
 .readings-container {
   padding: 0.4em;
   border-radius: 5px;
+  background-color: #f1ced4;
 }
 
 tr .testt {

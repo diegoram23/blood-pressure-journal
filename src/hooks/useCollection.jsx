@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase/config";
 
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 
 const useCollection = (col) => {
     const [documents, setDocuments] = useState([])
@@ -9,7 +9,9 @@ const useCollection = (col) => {
     useEffect(() => {
         let ref = collection(db, col)
 
-        const unsub = onSnapshot(ref, (snapshot) => {
+        const q = query(ref, orderBy('when', 'desc'))
+        
+        const unsub = onSnapshot(q, ref, (snapshot) => {
             let results = []
             snapshot.docs.forEach(doc => {
                 results.push({ id: doc.id, ...doc.data() })
@@ -17,6 +19,7 @@ const useCollection = (col) => {
             setDocuments(results)
         })
         return () => unsub()
+
     }, [col])
     return { documents }
 }
