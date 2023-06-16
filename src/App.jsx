@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route } from "react-router-dom"
 
 import Home from "./pages/Home"
-import BpForm from "./components/BpForm"
+import Footer from "./components/Footer"
 import Journal from "./pages/Journal"
 import HeaderLayout from "./components/HeaderLayout"
 
@@ -17,6 +17,7 @@ function App() {
           </Route>
         </Routes>
       </HashRouter>
+      <Footer />
     </div>
   )
 }

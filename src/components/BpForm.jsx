@@ -33,7 +33,7 @@ const BpForm = () => {
       {/* Form HTML */}
       <form onSubmit={handleSubmit}>
 
-        <h2>Enter your Readings</h2>
+        <h2>Enter Blood Pressure</h2>
 
         <div className="readings-container">
           {/* Blood pressure HTML */}
