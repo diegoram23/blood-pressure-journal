@@ -12,6 +12,12 @@ const BpForm = () => {
   const [time, setTime] = useState('')
   const [when, setWhen] = useState('')
 
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+      object.target.value = object.target.value.slice(0, object.target.maxLength)
+    }
+  }
+
 
   // Handles form data and calls add new reading function
   const handleSubmit = async (e) => {
@@ -43,6 +49,8 @@ const BpForm = () => {
             <input
               required
               type="number"
+              maxLength={3}
+              onInput={maxLengthCheck}
               id="readingSys"
               name="readingSys"
               value={readingSys}
@@ -52,6 +60,8 @@ const BpForm = () => {
             <label htmlFor="readingSys"></label>
             <input
               required
+              maxLength={3}
+              onInput={maxLengthCheck}
               type="number"
               id="readingDia"
               name="readingDia"
