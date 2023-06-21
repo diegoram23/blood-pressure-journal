@@ -54,16 +54,29 @@ const Journal = () => {
             setDataFiltered(filtered)
         }
 
-        //Sorts by newest readings
-        else if (sortValue === 'newest') {
-            console.log('newest');
+        //Sorts by high blood pressure readings
+        else if (sortValue === 'high') {
+            const filtered = bpReadings.filter(bp => {
+                return bp.readingSys >= 150
+            })
+            setDataFiltered(filtered)
         }
 
-        //Sorts by oldest readings
-        else {
-            console.log('oldest');
+        //Sorts by normal blood pressure readings
+        else if (sortValue === 'normal') {
+            const filtered = bpReadings.filter(bp => {
+                return bp.readingSys < 150 && bp.readingSys > 100
+            })
+            setDataFiltered(filtered)
         }
 
+        //Sorts by low blood pressure readings
+        else if (sortValue === 'low') {
+            const filtered = bpReadings.filter(bp => {
+                return bp.readingSys <= 100
+            })
+            setDataFiltered(filtered)
+        }
 
     }
 
@@ -77,12 +90,13 @@ const Journal = () => {
                     <option value='morning'>Morning</option>
                     <option value='afternoon'>Afternoon</option>
                     <option value='evening'>Evening</option>
-                    <option value='newest'>Newest</option>
-                    <option value='oldest'>Oldest</option>
+                    <option value='high'>High BP</option>
+                    <option value='normal'>Normal BP</option>
+                    <option value='low'>Low BP</option>
                 </select>
                 <table>
                     <tbody>
-                        {!emptyMessage &&<tr>
+                        {!emptyMessage && <tr>
                             <th>Reading</th>
                             <th>Time</th>
                             <th>Date</th>
@@ -90,7 +104,7 @@ const Journal = () => {
                         {/* Maps over data and renders it in table html form */}
                         {dataFiltered.map((data, index) => {
                             return <tr key={index}>
-                                <td style={{color: data.readingSys > 150 ? 'red' : data.readingSys < 100 ? 'blue' : 'green'}}>{data.readingSys}/{data.readingDia}</td>
+                                <td style={{ color: data.readingSys >= 150 ? 'red' : data.readingSys <= 100 ? 'blue' : 'green' }}>{data.readingSys}/{data.readingDia}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
                                 <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Delete</button></td>

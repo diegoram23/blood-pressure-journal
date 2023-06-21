@@ -32,7 +32,7 @@ const RecentReadings = () => {
                         {recentThree.map((data, index) => {
 
                             return <tr key={index} className="testt">
-                                <td style={{color: data.readingSys > 145 ? 'red' : data.readingSys < 100 ? 'blue' : 'green'}}>{data.readingSys}/{data.readingDia}</td>
+                                <td style={{color: data.readingSys >= 150 ? 'red' : data.readingSys <= 100 ? 'blue' : 'green'}}>{data.readingSys}/{data.readingDia}</td>
                                 <td>{data.time}</td>
                                 <td>{data.when}</td>
                                 <td><button className="edit-btn" onClick={() => handleDelete(data.id)}>Delete</button></td>
