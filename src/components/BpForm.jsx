@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 
@@ -12,6 +11,16 @@ const BpForm = () => {
   const [time, setTime] = useState('')
   const [when, setWhen] = useState('')
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  // Resets form inputs
+  const resetForm = () => {
+    setReadingDia('')
+    setReadingSys('')
+    setTime('')
+    setWhen('')
+  }
+
   const maxLengthCheck = (object) => {
     if (object.target.value.length > object.target.maxLength) {
       object.target.value = object.target.value.slice(0, object.target.maxLength)
@@ -22,6 +31,7 @@ const BpForm = () => {
   // Handles form data and calls add new reading function
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
 
     const ref = collection(db, 'blood-pressure-readings')
 
@@ -31,6 +41,9 @@ const BpForm = () => {
       time: time,
       when: when,
     })
+    
+    setIsLoading(false)
+    resetForm()
   }
 
   return (
@@ -93,7 +106,8 @@ const BpForm = () => {
           />
 
           {/* Submit Button */}
-          <button>Submit</button>
+          {!isLoading && <button>Submit</button>}
+          {isLoading && <button disabled>Adding</button>}
         </div>
       </form>
 
