@@ -98,6 +98,15 @@ p {
   align-items: center;
 }
 
+p, .added-message {
+  margin: 0;
+  max-height: 25px;
+  padding: 0 0 0.5em 0;
+  background-color: #f1ced4;
+  border: none;
+  color: #db3232;
+}
+
 /*------------------------- Header and Nav Styles ---------------------------------*/
 
 
@@ -166,10 +175,6 @@ td {
   padding: 0.7em;
   border-radius: 7px;
   font-weight: bold;
-}
-
-form {
-  margin-bottom: 1em;
 }
 
 /*---------------------------- Button Styles ---------------------------- */

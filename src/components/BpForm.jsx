@@ -2,6 +2,8 @@ import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 
+import Notification from "./Notification";
+
 const BpForm = () => {
 
   // Empty states to be filled by form data
@@ -12,6 +14,7 @@ const BpForm = () => {
   const [when, setWhen] = useState('')
 
   const [isLoading, setIsLoading] = useState(false)
+  const [added, setAdded] = useState(false)
 
   // Resets form inputs
   const resetForm = () => {
@@ -41,9 +44,14 @@ const BpForm = () => {
       time: time,
       when: when,
     })
-    
+
     setIsLoading(false)
     resetForm()
+
+    setAdded(true)
+    setTimeout(() => {
+      setAdded(false)
+    }, 1500);
   }
 
   return (
@@ -109,7 +117,10 @@ const BpForm = () => {
           {!isLoading && <button>Submit</button>}
           {isLoading && <button disabled>Adding</button>}
         </div>
+        <Notification added={added}/>
+
       </form>
+
 
     </div>
   );
